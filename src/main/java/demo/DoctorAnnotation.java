@@ -2,7 +2,7 @@ package demo;
 
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class DoctorAnnotation implements Staff {
 
     public void assist() {
