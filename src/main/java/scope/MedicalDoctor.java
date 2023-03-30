@@ -1,11 +1,14 @@
 package scope;
 
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 @Scope(scopeName = "prototype")
 @Component
-public class MedicalDoctor implements Staff{
+public class MedicalDoctor implements Staff, BeanNameAware {
     private String qualification;
 
     public String getQualification() {
@@ -24,5 +27,15 @@ public class MedicalDoctor implements Staff{
         return "MedicalDoctor{" +
                 "qualification='" + qualification + '\'' +
                 '}';
+    }
+
+    @Override
+    public void setBeanName(String name) {
+        System.out.println("Set Bean name method is called");
+    }
+
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("Post Construct Method is called");
     }
 }

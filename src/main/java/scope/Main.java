@@ -13,8 +13,8 @@ public class Main {
         doctor.setQualification("Mphil");
         System.out.println(doctor);
 
-        MedicalDoctor doctor1 = context.getBean(MedicalDoctor.class);
-        System.out.println(doctor1);
+//        MedicalDoctor doctor1 = context.getBean(MedicalDoctor.class);
+//        System.out.println(doctor1);
 
     }
 }
