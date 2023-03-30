@@ -1,8 +1,10 @@
 package scope;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-@Scope(scopeName = "singleton")
+@Scope(scopeName = "prototype")
+@Component
 public class MedicalDoctor implements Staff{
     private String qualification;
 
