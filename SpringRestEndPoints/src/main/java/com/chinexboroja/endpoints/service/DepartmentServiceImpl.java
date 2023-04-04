@@ -1,5 +1,6 @@
 package com.chinexboroja.endpoints.service;
 
+import com.chinexboroja.endpoints.exceptions.DepartmentNotFoundException;
 import com.chinexboroja.endpoints.model.Department;
 import com.chinexboroja.endpoints.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,14 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public Optional<Department> findById(Long id) {
-        return departmentRepository.findById(id);
+    public Optional<Department> findById(Long id) throws DepartmentNotFoundException {
+        Optional<Department> department = departmentRepository.findById(id);
+
+        if (!department.isPresent()) {
+            throw new DepartmentNotFoundException("Department Not Available");
+        }
+
+        return department;
     }
 
     @Override

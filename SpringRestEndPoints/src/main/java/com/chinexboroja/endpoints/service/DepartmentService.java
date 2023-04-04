@@ -1,5 +1,6 @@
 package com.chinexboroja.endpoints.service;
 
+import com.chinexboroja.endpoints.exceptions.DepartmentNotFoundException;
 import com.chinexboroja.endpoints.model.Department;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface DepartmentService {
 
     List<Department> findAllDepartment();
 
-    Optional<Department> findById(Long id);
+    Optional<Department> findById(Long id) throws DepartmentNotFoundException;
 
     void deleteById(Long id);
 

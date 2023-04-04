@@ -1,5 +1,6 @@
 package com.chinexboroja.endpoints.controller;
 
+import com.chinexboroja.endpoints.exceptions.DepartmentNotFoundException;
 import com.chinexboroja.endpoints.model.Department;
 import com.chinexboroja.endpoints.service.DepartmentService;
 import jakarta.validation.Valid;
@@ -33,7 +34,7 @@ public class DepartmentController {
     }
 
     @GetMapping(value = "/departments/{id}")
-    public Optional<Department> fetchDepartmentById(@PathVariable Long id) {
+    public Optional<Department> fetchDepartmentById(@PathVariable Long id) throws DepartmentNotFoundException {
         return departmentService.findById(id);
     }
 
