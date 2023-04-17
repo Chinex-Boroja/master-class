@@ -3,6 +3,7 @@ package com.chinexboroja.endpoints.service;
 import com.chinexboroja.endpoints.model.Department;
 import com.chinexboroja.endpoints.repository.DepartmentRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ class DepartmentServiceTest {
     }
 
     @Test
+    @DisplayName("Get data based on valid department's name")
     public void whenValidDepartmentName_thenDepartmentShouldBeFound() {
         String departmentName = "EEE";
         Department found = departmentService.getDepartmentByName(departmentName);
