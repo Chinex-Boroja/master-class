@@ -97,4 +97,13 @@ class StudentRepositoryTest {
         System.out.println(student);
 
     }
+
+    @Test
+    public void updateStudentByEmailIdTest() {
+        studentRepository.updateStudentByEmailId(
+                "Benedict",
+                "ihediohachinedu21@gmail.com"
+        );
+
+    }
 }
