@@ -17,13 +17,14 @@ class CourseMaterialRepositoryTest {
     private CourseMaterialRepository repository;
 
     Course course = Course.builder()
-            .title("CPE502")
+            .title("frontend")
             .creditPoint(5)
             .build();
     @Test
     public void saveCourseMaterial() {
         CourseMaterial courseMaterial = CourseMaterial.builder()
-                .url("www.cpe502.com")
+//                .url("www.cpe502.com")
+                .url("www.chinexboroja.com")
                 .course(course)
                 .build();
 
