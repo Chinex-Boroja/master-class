@@ -2,8 +2,11 @@ package com.chinexboroja.SpringSecurityClient.service;
 
 import com.chinexboroja.SpringSecurityClient.dto.UserDTO;
 import com.chinexboroja.SpringSecurityClient.entity.User;
+import com.chinexboroja.SpringSecurityClient.entity.VerificationToken;
 import com.chinexboroja.SpringSecurityClient.repository.UserRepository;
+import com.chinexboroja.SpringSecurityClient.repository.VerificationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +14,13 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private VerificationTokenRepository verificationTokenRepository;
+
     @Override
     public User registerUser(UserDTO userDTO) {
 
@@ -19,8 +29,18 @@ public class UserServiceImpl implements UserService{
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setRole("USER");
-        user.setPassword(userDTO.getPassword());
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 
-        return userRepository.save(user);
+        userRepository.save(user);
+        return user;
+    }
+
+    @Override
+    public void saveVerificationTokenForUser(String token, User user) {
+
+        VerificationToken verificationToken = new VerificationToken(user, token);
+
+        verificationTokenRepository.save(verificationToken);
+
     }
 }
