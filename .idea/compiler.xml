@@ -8,13 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="SpringDataJpa" />
-        <module name="SpringMasterCourse" />
+        <module name="Spring-Security-Client" />
         <module name="SpringRestEndPoints" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Spring-Security-Client" options="-parameters" />
       <module name="SpringDataJpa" options="-parameters" />
       <module name="SpringRestEndPoints" options="-parameters" />
     </option>
