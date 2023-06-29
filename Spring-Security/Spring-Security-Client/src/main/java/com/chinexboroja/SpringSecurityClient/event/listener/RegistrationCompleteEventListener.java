@@ -20,7 +20,7 @@ public class RegistrationCompleteEventListener implements
 
     @Override
     public void onApplicationEvent(RegistrationCompleteEvent event) {
-        // Create the verification token for the user with Link
+        // Create the verification token for the user with Link and redirect the user to the application
         User user = event.getUser();
         String token = UUID.randomUUID().toString();
         userService.saveVerificationTokenForUser(token, user);
@@ -28,7 +28,8 @@ public class RegistrationCompleteEventListener implements
         //Send mail to the user
         String url = event.getApplicationUrl()
                 + "/verifyRegistration?token=" + token;
-        //SendVerificationEmail()
+
+        //SendVerificationEmail() implementation (Currently mocking")
         log.info("Click to verify account: {}",  url);
     }
 }
