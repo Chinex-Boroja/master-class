@@ -1,5 +1,6 @@
 package com.chinexboroja.SpringSecurityClient.controller;
 
+import com.chinexboroja.SpringSecurityClient.dto.PasswordDTO;
 import com.chinexboroja.SpringSecurityClient.dto.UserDTO;
 import com.chinexboroja.SpringSecurityClient.entity.User;
 import com.chinexboroja.SpringSecurityClient.entity.VerificationToken;
@@ -10,6 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -45,6 +49,57 @@ public class RegistrationController {
          resendVerificationTokenMail(user, applicationUrl(request), verificationToken);
          return "Verification Link Sent";
      }
+
+     @PostMapping("/resetPassword")
+     public String resetPassword(@RequestBody PasswordDTO passwordDTO, HttpServletRequest request) {
+        User user = userService.findUserByEmail(passwordDTO.getEmail());
+        String url = "";
+        if (user != null) {
+            String token = UUID.randomUUID().toString();
+            userService.createPasswordResetTokenForUser(user, token);
+            url = passwordResetTokenMail(user, applicationUrl(request), token);
+        }
+
+        return url;
+     }
+
+     @PostMapping("/savePassword")
+     public String savePassword(@RequestParam("token") String token, @RequestBody PasswordDTO passwordDTO) {
+
+        String result = userService.validatePasswordResetToken(token);
+        if (!result.equalsIgnoreCase("valid")) {
+            return "Invalid Token";
+        }
+
+         Optional<User> user = userService.getUserByPasswordResetToken(token);
+        if (user.isPresent()) {
+            userService.changePassword(user.get(), passwordDTO.getNewPassword());
+            return "Password Reset Successfully";
+        } else {
+            return "Invalid Token";
+        }
+
+     }
+
+     @PostMapping("/changePassword")
+     public String changePassword(@RequestBody PasswordDTO passwordDTO) {
+        User user = userService.findUserByEmail(passwordDTO.getEmail());
+
+        if(!userService.checkIfValidOldPassword(user, passwordDTO.getOldPassword())) {
+           return "Invalid Old password";
+        }
+
+        userService.changePassword(user, passwordDTO.getNewPassword());
+
+        return "Password Changed Successfully";
+     }
+
+    private String passwordResetTokenMail(User user, String applicationUrl, String token) {
+
+        String url = applicationUrl + "/savePassword?token=" + token;
+        log.info("Click the link to Reset your Password: {}", url);
+        return url;
+    }
 
     private void resendVerificationTokenMail(User user, String applicationUrl, VerificationToken verificationToken) {
 
