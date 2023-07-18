@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>Spring-Security</module>
+        <module>Hibernate-ORM</module>
     </modules>
 
     <properties>

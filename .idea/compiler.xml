@@ -10,12 +10,14 @@
         <module name="Oauth-authorization-server" />
         <module name="SpringDataJpa" />
         <module name="Spring-Security-Client" />
+        <module name="Hibernate-ORM" />
         <module name="SpringRestEndPoints" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Hibernate-ORM" options="-parameters" />
       <module name="Oauth-authorization-server" options="-parameters" />
       <module name="Spring-Security-Client" options="-parameters" />
       <module name="SpringDataJpa" options="-parameters" />
