@@ -11,6 +11,7 @@
     <modules>
         <module>Spring-Security</module>
         <module>Hibernate-ORM</module>
+        <module>tacos</module>
     </modules>
 
     <properties>

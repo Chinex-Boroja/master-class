@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Oauth-authorization-server" />
+        <module name="tacos" />
         <module name="SpringDataJpa" />
         <module name="Spring-Security-Client" />
         <module name="Hibernate-ORM" />
@@ -22,6 +23,7 @@
       <module name="Spring-Security-Client" options="-parameters" />
       <module name="SpringDataJpa" options="-parameters" />
       <module name="SpringRestEndPoints" options="-parameters" />
+      <module name="tacos" options="-parameters" />
     </option>
   </component>
 </project>
