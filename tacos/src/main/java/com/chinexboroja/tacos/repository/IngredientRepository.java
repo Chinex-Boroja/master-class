@@ -4,7 +4,7 @@ import com.chinexboroja.tacos.domain.Ingredient;
 
 import java.util.Optional;
 
-public interface IngredientRepository{
+public interface IngredientRepository extends{
 
     Iterable<Ingredient> findAll();
 
