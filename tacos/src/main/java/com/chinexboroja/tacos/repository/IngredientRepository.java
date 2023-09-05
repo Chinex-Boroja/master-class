@@ -1,14 +1,8 @@
 package com.chinexboroja.tacos.repository;
 
 import com.chinexboroja.tacos.domain.Ingredient;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.Optional;
+public interface IngredientRepository extends CrudRepository<Ingredient, String> {
 
-public interface IngredientRepository extends{
-
-    Iterable<Ingredient> findAll();
-
-    Optional<Ingredient> findById(String id);
-
-    Ingredient save(Ingredient ingredient);
 }
