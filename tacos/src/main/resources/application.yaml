@@ -6,9 +6,19 @@ spring:
     keyspace-name: taco_cloud
     schema-action: recreate
     local-datacenter: datacenter1
-    username: tacocloud
-    password: chinex1206
+    username:
+    password:
 
 #  datasource:
 #    generate-unique-name: false
 #    name: tacocloud
+
+---
+spring:
+  data:
+    mongodb:
+      host: mongodb.tacocloud.com
+      port: 27017
+      username: tacocloud
+      password: chinex1206
+      database: tacoclouddb
